@@ -1,4 +1,4 @@
-package lesson_one;
+package lesson_one.second_task;
 
 import lombok.Getter;
 import java.util.ArrayList;
@@ -14,13 +14,5 @@ public class SecondTask<A> {
 
   public ArrayList<A> ArrayToList() {
     return new ArrayList<>(List.of(this.array));
-  }
-}
-
-class TestApp {
-  public static void main(String[] args) {
-    SecondTask<Integer> test = new SecondTask<>(1, 2, 3, 4);
-    var res = test.ArrayToList();
-    System.out.println(res);
   }
 }

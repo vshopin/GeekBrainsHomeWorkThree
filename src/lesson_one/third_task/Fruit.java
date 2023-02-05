@@ -1,13 +1,10 @@
 package lesson_one.third_task;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Fruit {
   private float weight;
-
-  public Fruit(float weight) {
-    this.weight = weight;
-  }
-
-  public float getWeight() {
-    return weight;
-  }
 }
