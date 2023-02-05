@@ -12,11 +12,14 @@ public class Main {
     var appleBox = new Box<>(appleOne, appleTwo, appleThree);
     var orangeBox = new Box<>(orangeOne, orangeTwo);
 
-    System.out.println(appleBox.compare(orangeBox));
+    var compare = appleBox.compare(orangeBox);
+    System.out.println(compare);
 
     var boxThree = new Box<Orange>();
     orangeBox.transfer(boxThree);
-    System.out.println(boxThree.getItems());
-    System.out.println(orangeBox.getItems());
+    var boxThreeGetItems = boxThree.getItems();
+    var orangeBoxGetItems = orangeBox.getItems();
+    System.out.println(boxThreeGetItems);
+    System.out.println(orangeBoxGetItems);
   }
 }
