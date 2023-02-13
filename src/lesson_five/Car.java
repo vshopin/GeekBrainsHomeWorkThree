@@ -1,17 +1,17 @@
 package lesson_five;
 
 import lombok.Getter;
+import lombok.extern.java.Log;
 
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
 
+@Log
 @Getter
 public class Car implements Runnable {
   protected static ArrayList<String> podium = new ArrayList<>();
-  private static int CARS_COUNT;
-  static {
-    CARS_COUNT = 0;
-  }
+  private static int CARS_COUNT = 0;
 
   private CountDownLatch cdlGo;
   private CountDownLatch cdlEnd;
@@ -38,13 +38,13 @@ public class Car implements Runnable {
       System.out.println(this.name + " готов");
       countDownLatch.countDown();
       cdlGo.countDown();
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (InterruptedException e) {
+      log.log(Level.WARNING, "Прервался поток" , e.getMessage());
     }
     try {
       countDownLatch.await();
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      log.log(Level.WARNING, "Прервался поток" , e.getMessage());
     }
     for (int i = 0; i < race.getStages().size(); i++) {
       race.getStages().get(i).go(this);
