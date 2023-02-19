@@ -23,21 +23,21 @@ public class MyArrayTest {
     Assert.assertEquals(expected, result);
   }
 
-  @Test(expected = RuntimeException.class)
-  public void testLastFour() throws RuntimeException {
+  @Test
+  public void testLastFour() {
     var array = new MyArray(new ArrayList<>(List.of(1, 4, 5, 4, 9, 4)));
-    array.returnArray();
+    Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
 
-  @Test(expected = RuntimeException.class)
-  public void testWithoutFour() throws RuntimeException {
+  @Test
+  public void testWithoutFour() {
     var array = new MyArray(new ArrayList<>(List.of(0, 0, 0, 0, 0, 0)));
-    array.returnArray();
+    Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
 
-  @Test(expected = RuntimeException.class)
-  public void testEmptyArray() throws RuntimeException {
+  @Test
+  public void testEmptyArray() {
     var array = new MyArray(new ArrayList<>(List.of()));
-    array.returnArray();
+    Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
 }
