@@ -6,35 +6,35 @@ import java.util.List;
 
 public class ArrayFourAndOneTest {
   @Test
-  public void testOneFour() {
+  public void oneFour() {
     var array = new ArrayFourAndOne(new ArrayList<>(List.of(5, 4, 9, 0)));
     var result = array.checkArray();
     Assert.assertEquals(true, result);
   }
 
   @Test
-  public void testOneOne() {
+  public void oneOne() {
     var array = new ArrayFourAndOne(new ArrayList<>(List.of(1, 5, 9, 0)));
     var result = array.checkArray();
     Assert.assertEquals(true, result);
   }
 
   @Test
-  public void testOneAndFour() {
+  public void oneAndFour() {
     var array = new ArrayFourAndOne(new ArrayList<>(List.of(1, 4, 5, 4, 9, 4)));
     var result = array.checkArray();
     Assert.assertEquals(true, result);
   }
 
   @Test
-  public void testWithoutFourAndOne() {
+  public void withoutFourAndOne() {
     var array = new ArrayFourAndOne(new ArrayList<>(List.of(0, 0, 0, 0, 0, 0)));
     var result = array.checkArray();
     Assert.assertEquals(false, result);
   }
 
   @Test
-  public void testEmptyArray() {
+  public void emptyArray() {
     var array = new ArrayFourAndOne(new ArrayList<>(List.of()));
     var result = array.checkArray();
     Assert.assertEquals(false, result);

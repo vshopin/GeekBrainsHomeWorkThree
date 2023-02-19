@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MyArrayTest {
   @Test
-  public void testOneFour() throws RuntimeException {
+  public void oneFour() throws RuntimeException {
     var array = new MyArray(new ArrayList<>(List.of(1, 5, 4, 9, 0)));
     var result = array.returnArray();
     var expected = new ArrayList<>(List.of(9, 0));
@@ -16,7 +16,7 @@ public class MyArrayTest {
   }
 
   @Test
-  public void testTwoFour() throws RuntimeException {
+  public void twoFour() throws RuntimeException {
     var array = new MyArray(new ArrayList<>(List.of(1, 4, 5, 4, 9, 0)));
     var result = array.returnArray();
     var expected = new ArrayList<>(List.of(9, 0));
@@ -24,19 +24,19 @@ public class MyArrayTest {
   }
 
   @Test
-  public void testLastFour() {
+  public void lastFourShouldThrowRuntimeException() {
     var array = new MyArray(new ArrayList<>(List.of(1, 4, 5, 4, 9, 4)));
     Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
 
   @Test
-  public void testWithoutFour() {
+  public void withoutFourShouldThrowRuntimeException() {
     var array = new MyArray(new ArrayList<>(List.of(0, 0, 0, 0, 0, 0)));
     Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
 
   @Test
-  public void testEmptyArray() {
+  public void emptyArrayShouldThrowRuntimeException() {
     var array = new MyArray(new ArrayList<>(List.of()));
     Assert.assertThrows(RuntimeException.class, () -> {array.returnArray();});
   }
