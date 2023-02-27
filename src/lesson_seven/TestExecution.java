@@ -3,7 +3,7 @@ package lesson_seven;
 import lombok.extern.java.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 @Log
@@ -13,7 +13,7 @@ public class TestExecution {
     final int MAX_PRIORITY = 10;
     var cntBeforeSuite = 0;
     var cntAfterSuite = 0;
-    var map = new TreeMap<Integer, Method>();
+    var map = new HashMap<Integer, Method>();
 
     for (Method method : className.getDeclaredMethods()) {
       if (method.getAnnotation(BeforeSuite.class) != null) {
@@ -35,23 +35,28 @@ public class TestExecution {
         System.out.printf("priority:%d %s\n", key, map.get(key).getName());
       }
       System.out.printf("\nReflections for %s\n", className.getSimpleName());
-      try {
-        var testCase = new TestCase();
-        for (Integer key : map.keySet()) {
+
+      var testCase = new TestCase();
+      map.keySet().forEach(key -> {
+        try {
           map.get(key).invoke(testCase);
+        } catch (IllegalAccessException e) {
+          log.log(Level.WARNING, "Методы invoke не имеет доступа к объекту testCase\n", e.getMessage());
+        } catch (InvocationTargetException e) {
+          log.log(Level.WARNING, "Получено исключение в вызываемом методе объекта testCase\n", e.getMessage());
         }
-      } catch (IllegalAccessException e) {
-        log.log(Level.WARNING, "Методы invoke не имеет доступа к объекту testCase\n", e.getMessage());
-      } catch (InvocationTargetException e) {
-        log.log(Level.WARNING, "Получено исключение в вызываемом методе объекта testCase\n", e.getMessage());
-      }
+      });
     } else {
-      throw new RuntimeException();
+      throw new RuntimeException(cntBeforeSuite, cntAfterSuite);
     }
   }
 
-  public static void main(String[] args) throws RuntimeException {
+  public static void main(String[] args) {
     System.out.println("Annotations analyze:");
-    start(TestCase.class);
+    try {
+      start(TestCase.class);
+    } catch (RuntimeException e) {
+      e.printStackTrace();
+    }
   }
 }

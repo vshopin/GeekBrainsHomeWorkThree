@@ -5,7 +5,8 @@ import java.util.logging.Level;
 
 @Log
 public class RuntimeException extends Exception {
-  public RuntimeException() {
-    log.log(Level.WARNING, "Методы с аннотациями cntAfterSuite и cntAfterSuite должны быть в единстенном экземпляре\n", getMessage());
+  public RuntimeException(int cntBeforeSuite, int cntAfterSuite) {
+    log.log(Level.WARNING, "Методы с аннотациями cntAfterSuite: " + cntBeforeSuite + " и cntAfterSuite: "
+      + cntAfterSuite + " должны быть в единстенном экземпляре\n", getMessage());
   }
 }
